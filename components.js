@@ -18,7 +18,7 @@ const {
   DelayAcrossTracks,
   makeArpTLibrary,
   makeArpScore,
-  OnOtherTrack} = require('./techniques')
+  OnOtherTrack } = require('./techniques')
 
 const { zebralette, tEqualizer } = require('./presets')
 

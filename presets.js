@@ -27,13 +27,14 @@ const dfHallShortFxpB64 = fs.readFileSync(dfHallShort)
 
 module.exports = {
   zebralette: {
-    /** @param args {import('fluid-music').plugins.ZebraletteVst2Parameters} */
+    /** @param params {import('fluid-music').plugins.ZebraletteVst2Parameters} */
     cPop(params) {
       const zebralette = new plugins.ZebraletteVst2()
       zebralette.vst2.presetBase64 = zebraletteCPopFxpB64
       if (params) zebralette.parameters = params
       return zebralette
     },
+    /** @param params {import('fluid-music').plugins.ZebraletteVst2Parameters} */
     cPop2(params) {
       const zebralette = new plugins.ZebraletteVst2()
       zebralette.vst2.presetBase64 = zebraletteCPop2FxpB64

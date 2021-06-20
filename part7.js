@@ -39,6 +39,7 @@ const session = new fluid.FluidSession({ bpm, dLibrary }, [
   { name: 'delay8+16', gainDb: -13, plugins: [tStereoDelay.stereo8and16(bpm)] },
   { name: 'verbLong', plugins: [dragonflyHall.long()] },
   { name: 'verbShort', gainDb: -25, plugins: [dragonflyHall.short()] },
+  { name: 'test', plugins: [zebralette.cPop({})] },
 ])
 session.getTrackByName('verbShort').addReceiveFrom(session.getTrackByName('arp6'))
 session.getTrackByName('verbLong').addReceiveFrom(session.getTrackByName('arp64'), -17)
@@ -162,6 +163,7 @@ const tFadeToUnityCurve = new fluid.techniques.TrackGainAutomationRamp({ gainDb:
 const tZebraOsc1Filter = fluid.plugins.ZebraletteVst2.makeAutomation.osc1SpectraFX2ValPercent
 const tZebraOsc1Sync = fluid.plugins.ZebraletteVst2.makeAutomation.osc1SyncTune
 
+
 // Mute all arp6S tracks by adding a single automation point
 const arpSTracks = ['arp6S', 'arp6S1', 'arp6S2', 'arp6S3', 'arp6S4'].map(name => session.getTrackByName(name))
 arpSTracks.forEach(trackName => session.useTechnique(tMute, { track: trackName }))
@@ -199,7 +201,7 @@ arpSTracks.forEach(track => session.useTechnique(zebralette.automationTechnique.
 scoreB.tLibrary = makeArp6TLibraryFromMidiChords(delays4times7over32, [7, -7, 2, 3], null, chordLibraries[0],  [0, 2, 3, 5, 7, 8, 10])
 session.insertScore({ scoreB, r: '1', arp6S2: '8', arp6S3: '6', arp6S4: '6' })
 
-session.useTechnique(tFadeToMinus12Db, { track: 'arp', duration: 0.01, startTime: session.editCursorTime -0.01 })
+session.useTechnique(tFadeToMinus12Db, { track: 'arp', duration: 0.01, startTimeSeconds: session.editCursorTime -0.01 })
 session.useTechnique(tFadeToUnityCurve, { track: 'arp', startTime: session.editCursorTime + 0.01, duration: 4 })
 session.useTechnique(tFadeToMinus6Db, { track: 'verbLong', duration: 0.01, startTime: session.editCursorTime -0.01 })
 session.useTechnique(tFadeToUnityCurve, { track: 'verbLong', startTime: session.editCursorTime + 0.01, duration: 4 })
